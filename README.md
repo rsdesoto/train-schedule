@@ -1,6 +1,8 @@
 # train-schedule
 
-This app tells you what time the first train of the day will run.
+An app used to estimate when trains will leave.
+
+Enter the train you wish to track, the first train of the day (in military time), the frequency of operation (in minutes), and it will estimate the next train's arrival time.
 
 ## Please note!!!
 
