@@ -17,114 +17,125 @@
         />
     </head>
     <body>
-        <div class="row">
-            <div class="col-md-12">
-                <!-- Current Trains -->
-                <div class="card mb-4">
-                    <div class="card-header">Current Train Schedule</div>
-                    <div class="card-body">
-                        <table
-                            class="table table-sm table-hover"
-                            id="train-table"
-                        >
-                            <thead>
-                                <tr>
-                                    <th scope="col">Train Name</th>
-                                    <th scope="col">Destination</th>
-                                    <th scope="col">Frequency(min)</th>
-                                    <th scope="col">Next Arrival</th>
-                                    <th scope="col">Minutes Away</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Train Tracker</h1>
+                        <p class="lead">Caution: Trains</p>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card mb-4">
-                    <div class="card-header">Add Employee</div>
-                    <div class="card-body">
-                        <form>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span
-                                        class="input-group-text"
-                                        id="basic-addon1"
-                                        >Train Name</span
-                                    >
-                                </div>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Train Name"
-                                    aria-label="Username"
-                                    aria-describedby="basic-addon1"
-                                    id="train-name"
-                                />
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span
-                                        class="input-group-text"
-                                        id="basic-addon1"
-                                        >Destination</span
-                                    >
-                                </div>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Destination"
-                                    aria-label="Username"
-                                    aria-describedby="basic-addon1"
-                                    id="destination"
-                                />
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span
-                                        class="input-group-text"
-                                        id="basic-addon1"
-                                        >First Train Time</span
-                                    >
-                                </div>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="First Train Time"
-                                    aria-label="Username"
-                                    aria-describedby="basic-addon1"
-                                    id="first-train-time"
-                                />
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span
-                                        class="input-group-text"
-                                        id="basic-addon1"
-                                        >Frequency</span
-                                    >
-                                </div>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Frequency"
-                                    aria-label="Username"
-                                    aria-describedby="basic-addon1"
-                                    id="frequency"
-                                />
-                            </div>
-                            <button
-                                type="button"
-                                id="add-train"
-                                class="btn btn-dark"
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Current Trains -->
+                    <div class="card mb-4">
+                        <div class="card-header">Current Train Schedule</div>
+                        <div class="card-body">
+                            <table
+                                class="table table-sm table-hover"
+                                id="train-table"
                             >
-                                Add Train
-                            </button>
-                        </form>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Train Name</th>
+                                        <th scope="col">Destination</th>
+                                        <th scope="col">First Train</th>
+                                        <th scope="col">Frequency(min)</th>
+                                        <th scope="col">Next Arrival</th>
+                                        <th scope="col">Minutes Away</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div class="card-header">Add New Train</div>
+                        <div class="card-body">
+                            <form>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon1"
+                                            >Train Name</span
+                                        >
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Train Name"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        id="train-name"
+                                    />
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon1"
+                                            >Destination</span
+                                        >
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Destination"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        id="destination"
+                                    />
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon1"
+                                            >First Train Time (in HH:MM)</span
+                                        >
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="First Train Time"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        id="first-train-time"
+                                    />
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon1"
+                                            >Frequency (in minutes)</span
+                                        >
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Frequency"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        id="frequency"
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    id="add-train"
+                                    class="btn btn-dark"
+                                >
+                                    Add Train
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

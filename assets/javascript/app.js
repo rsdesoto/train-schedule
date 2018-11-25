@@ -54,12 +54,6 @@ database.ref("/trains").on("child_added", function(snap) {
     var firstTrainTimeRaw = snap.val().firstTrainTime;
     var frequency = snap.val().frequency;
 
-    /////////// pseudo code
-    // if (role.indexOf("/") > -1) {
-    // convert to moment.js and return
-    //}
-    /////////// pseudo code
-
     console.log(`name: ${name}`);
     console.log(`destination: ${destination}`);
     console.log(`firstTrainTimeRaw: ${firstTrainTimeRaw}`);
@@ -69,32 +63,51 @@ database.ref("/trains").on("child_added", function(snap) {
 
     console.log(`firstTrainTime: ${firstTrainTime}`);
 
-    var minDifference = moment().diff(
-        moment(firstTrainTimeRaw, "X"),
-        "minutes"
-    );
+    // two scenarios: first, that it is PAST the start time of the train
 
-    var now = moment();
-    console.log(`now: ${now}`);
+    if (moment().format("HH:mm") > firstTrainTime) {
+        var minDifference = moment().diff(
+            moment(firstTrainTimeRaw, "X"),
+            "minutes"
+        );
 
-    var now2 = moment(now).format("X");
-    console.log(now2);
+        var now = moment();
+        console.log(`now: ${now}`);
 
-    var minToNext = frequency - (minDifference % frequency);
+        var now2 = moment(now).format("X");
+        console.log(now2);
 
-    console.log(`minToNext: ${minToNext}`);
+        console.log(moment().format("X"));
 
-    console.log(moment().format("HH:mm"));
+        var minToNext = frequency - (minDifference % frequency);
 
-    var nextTimeRaw = moment().add(minToNext, "minutes");
-    var nextTime = nextTimeRaw.format("HH:mm");
+        console.log(`minToNext: ${minToNext}`);
 
-    console.log(`next time: ${nextTime}`);
+        console.log(moment().format("HH:mm"));
+
+        var nextTimeRaw = moment().add(minToNext, "minutes");
+        var nextTime = nextTimeRaw.format("HH:mm");
+
+        console.log(`next time: ${nextTime}`);
+    }
+    // second: the train hasn't started yet!
+    else {
+        nextTime = firstTrainTime;
+        // minutes to next: first train time - current time
+        var now2 = moment().format("X");
+        var now = moment().format("HH:mm");
+
+        var minToNext = moment(firstTrainTime, "HH:mm").diff(
+            moment(now, "HH:mm"),
+            "minutes"
+        );
+    }
 
     var newTrain = $("<tr>");
     newTrain.append(
         $("<td>").text(name),
         $("<td>").text(destination),
+        $("<td>").text(firstTrainTime),
         $("<td>").text(frequency),
         $("<td>").text(nextTime),
         $("<td>").text(minToNext)
