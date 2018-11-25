@@ -32,11 +32,6 @@ $("#add-train").on("click", function(event) {
         .val()
         .trim();
 
-    console.log(tname);
-    console.log(tdestination);
-    console.log(tfirstTrainTime);
-    console.log(tfrequency);
-
     var newTrain = {
         name: tname,
         destination: tdestination,
@@ -54,14 +49,7 @@ database.ref("/trains").on("child_added", function(snap) {
     var firstTrainTimeRaw = snap.val().firstTrainTime;
     var frequency = snap.val().frequency;
 
-    console.log(`name: ${name}`);
-    console.log(`destination: ${destination}`);
-    console.log(`firstTrainTimeRaw: ${firstTrainTimeRaw}`);
-    console.log(`frequency: ${frequency}`);
-
     var firstTrainTime = moment.unix(firstTrainTimeRaw).format("HH:mm");
-
-    console.log(`firstTrainTime: ${firstTrainTime}`);
 
     // two scenarios: first, that it is PAST the start time of the train
 
@@ -71,30 +59,15 @@ database.ref("/trains").on("child_added", function(snap) {
             "minutes"
         );
 
-        var now = moment();
-        console.log(`now: ${now}`);
-
-        var now2 = moment(now).format("X");
-        console.log(now2);
-
-        console.log(moment().format("X"));
-
         var minToNext = frequency - (minDifference % frequency);
-
-        console.log(`minToNext: ${minToNext}`);
-
-        console.log(moment().format("HH:mm"));
 
         var nextTimeRaw = moment().add(minToNext, "minutes");
         var nextTime = nextTimeRaw.format("HH:mm");
-
-        console.log(`next time: ${nextTime}`);
     }
     // second: the train hasn't started yet!
     else {
         nextTime = firstTrainTime;
         // minutes to next: first train time - current time
-        var now2 = moment().format("X");
         var now = moment().format("HH:mm");
 
         var minToNext = moment(firstTrainTime, "HH:mm").diff(
